@@ -2,18 +2,6 @@
 classDiagram
     direction TB
 
-    class JFrame {
-        <<Swing>>
-    }
-
-    class Digraph {
-        <<algs4>>
-        +V() int
-        +E() int
-        +addEdge(int v, int w) void
-        +adj(int v) Iterable~Integer~
-    }
-
     class GameGUI {
         -MapGenerator mapGenerator
         -Player player
@@ -137,12 +125,10 @@ classDiagram
         BOSS
     }
 
-    JFrame <|-- GameGUI
     GameGUI --> MapGenerator : uses
     GameGUI --> Player : owns
     GameGUI ..> Event : displays
 
-    MapGenerator o-- Digraph : graph
     MapGenerator ..> Event : creates
 
     Event <|-- MinionEvent
