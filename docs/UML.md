@@ -26,8 +26,6 @@ classDiagram
 
     class MapGenerator {
         -Digraph map
-        -int floors
-        -int width
         -Map~Integer, Event~ nodeEvents
         +generate() Digraph
         +getEvent(int vertex) Event
@@ -40,11 +38,23 @@ classDiagram
         -int currentHealth
         -int gold
         -int currentNode
-        +takeDamage(int amount) void
+        -int attackDice
+        -int healDice
+        -int defendDice
+        +attack() int
         +heal(int amount) void
-        +addGold(int amount) void
+        +heal() int
+        +defend() int
+        +takeDamage(int amount) void
+        +changeGold(int amount) void
         +moveTo(int vertex) void
         +isAlive() boolean
+        +getAttackDice() int
+        +getHealDice() int
+        +getDefendDice() int
+        +setAttackDice() void
+        +setHealDice() void
+        +setDefendDice() void
     }
 
     class Event {
@@ -60,12 +70,12 @@ classDiagram
     }
 
     class EliteEvent {
-        -Enemy elite
+        -List~Enemy~ elite
         +execute(Player player) void
     }
 
     class BossEvent {
-        -Enemy boss
+        -List~Enemy~ boss
         +execute(Player player) void
     }
 
@@ -76,11 +86,15 @@ classDiagram
     }
 
     class MysteryEvent {
+        -List~Events~ mysteryEvents
         +execute(Player player) void
     }
 
     class RestEvent {
         -int healPercent
+        + upgradeAttack() void 
+        + upgradeHeal() void 
+        + upgradeDefence() void 
         +execute(Player player) void
     }
 
