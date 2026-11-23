@@ -14,9 +14,9 @@ public class Player {
 	private int currentHealth;
 	private int gold;
 	private int currentNode;
-	private int attackDice;
-	private int healDice;
-	private int defendDice;
+	private static int attackDice;
+	private static int healDice;
+	private static int defendDice;
 	
 	public Player(String name, int maxHealth, int currentHealth, int gold, int currentNode, int attackDice,
 			int healDice, int defendDice) {
@@ -97,11 +97,19 @@ public class Player {
 		//TODO
 	}
 
+	public static void changeAmount(int dice, int changeAmount) {
+		if(dice + changeAmount < 1)
+			dice = 1;
+		else {
+			dice += changeAmount;
+		}
+	}
+	
 	/**
 	 * Returns which die they have for attacking
 	 * @return
 	 */
-	public int getAttackDice() {
+	public static int getAttackDice() {
 		return attackDice;
 	}
 	
@@ -109,15 +117,16 @@ public class Player {
 	 * Sets which specific die they have for attacking
 	 * @param attackDice
 	 */
-	public void setAttackDice(int attackDice) {
-		this.attackDice = attackDice;
+	public void setAttackDice(int changeAmount) {
+		changeAmount(attackDice, changeAmount);
+
 	}
 
 	/**
 	 * Returns which specific die they have for healing
 	 * @return
 	 */
-	public int getHealDice() {
+	public static int getHealDice() {
 		return healDice;
 	}
 
@@ -125,15 +134,15 @@ public class Player {
 	 * Sets which specific die they have for healing
 	 * @param healDice
 	 */
-	public void setHealDice(int healDice) {
-		this.healDice = healDice;
+	public void setHealDice(int changeAmount) {
+		changeAmount(attackDice, changeAmount);
 	}
 
 	/**
 	 * Returns which specific die they have for defending
 	 * @return
 	 */
-	public int getDefendDice() {
+	public static int getDefendDice() {
 		return defendDice;
 	}
 
@@ -141,10 +150,8 @@ public class Player {
 	 * Sets which  specific die they have for defending
 	 * @param defendDice
 	 */
-	public void setDefendDice(int defendDice) {
-		this.defendDice = defendDice;
+	public void setDefendDice(int changeAmount) {
+		changeAmount(attackDice, changeAmount);	
 	}
-
-	
 
 }
